@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module>
+  <!-- Inherit our applications main module.                      -->
+  <inherits name='com.mhontar.gwt.BasicProject' />
+
+  <!-- Specify the path to any remote services.                   -->
+  <servlet path="/BasicProject/greet" class="com.mhontar.gwt.server.GreetingServiceImpl" />
+
+</module>

@@ -1,0 +1,2 @@
+serviceClass: com.mhontar.gwt.client.GreetingService
+path: 583EAAFD02D3E424A7C93BB035DAD86D.gwt.rpc

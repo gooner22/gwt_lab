@@ -1,0 +1,9 @@
+<beans:beans
+        xmlns:aop="http://www.springframework.org/schema/aop"
+        xmlns:beans="http://www.springframework.org/schema/beans">
+    <aop:aspectj-autoproxy xmlns:aop="http://www.springframework.org/schema/aop"/>
+    <beans:bean
+            class="com.gwt.ss.GwtExceptionTranslator"
+            xmlns:beans="http://www.springframework.org/schema/beans"/>
+    </beans:beans>
+
