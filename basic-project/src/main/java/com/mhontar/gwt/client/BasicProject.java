@@ -2,15 +2,18 @@ package com.mhontar.gwt.client;
 
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.dom.client.OptionElement;
+import com.google.gwt.dom.client.SelectElement;
+import com.google.gwt.event.dom.client.ChangeEvent;
+import com.google.gwt.event.dom.client.ChangeHandler;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.i18n.client.LocaleInfo;
 import com.google.gwt.user.client.Cookies;
+import com.google.gwt.user.client.DOM;
+import com.google.gwt.user.client.Element;
 import com.google.gwt.user.client.rpc.AsyncCallback;
-import com.google.gwt.user.client.ui.Button;
-import com.google.gwt.user.client.ui.PasswordTextBox;
-import com.google.gwt.user.client.ui.RootPanel;
-import com.google.gwt.user.client.ui.TextBox;
+import com.google.gwt.user.client.ui.*;
 import com.mhontar.gwt.model.User;
 
 import java.util.Date;
@@ -40,6 +43,7 @@ public class BasicProject implements EntryPoint {
     private Button sendButton;
     private TextBox nameField;
     private PasswordTextBox pwdField;
+    private SelectElement languageSwitch;
 
     /**
      * This is the entry point method.
@@ -61,7 +65,6 @@ public class BasicProject implements EntryPoint {
 
         sendButton.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent clickEvent) {
-                swapLocales();
                 User user = null;
                 try {
 
@@ -91,9 +94,31 @@ public class BasicProject implements EntryPoint {
         nameField.setFocus(true);
         nameField.selectAll();
 
+        Element domSelect = DOM.getElementById("languageSwitcher");
+        final ListBox listBox = ListBox.wrap(domSelect);
+        listBox.setItemSelected(getLocaleName().equals(EN_US) ? 0 : 1,true);
+        listBox.addChangeHandler(new ChangeHandler() {
+            public void onChange(ChangeEvent event) {
+                setLocale(listBox.getSelectedIndex());
+            }
+        });
+
 
     }
 
+    private void setLocale(int index) {
+        String localeName = null;
+        switch (index) {
+            case 0:
+                localeName = EN_US;
+                break;
+            case 1:
+                localeName = FR_FR;
+                break;
+
+        }
+        setLocaleCookie(localeName);
+    }
     private void swapLocales() {
         String localeName = getLocaleName();
         ;
